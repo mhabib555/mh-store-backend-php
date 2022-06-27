@@ -1,0 +1,9 @@
+{
+    "name": "mhabib555/mh_store_backend_php",
+    "description": "Server side code for mh store",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
