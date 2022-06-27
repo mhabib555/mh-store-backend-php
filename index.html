@@ -1,0 +1,231 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        =========================================
+        =========================================
+        =========================================
+        global
+        =========================================
+        =========================================
+        ========================================= 
+        */
+        
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            position: relative;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .minimize {
+            width: 0px !important;
+        }
+        /* 
+        =========================================
+        =========================================
+        =========================================
+        Aside Menu
+        =========================================
+        =========================================
+        ========================================= 
+        */
+        
+        .aside {
+            width: 220px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgb(100, 31, 180);
+            display: block;
+            height: 100%;
+            padding-top: 40px;
+            transition: 1.8s;
+        }
+        
+        .aside__menu {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .aside__menu .aside__menu-btn {
+            padding: 17px;
+            border: 1px solid #fff;
+            border-right: none;
+            margin: 18px 0px 8px 28px;
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+            list-style-type: none;
+            transition: 0.3s;
+        }
+        
+        .aside__menu .aside__menu-btn:hover {
+            padding: 17px;
+            background-color: #fff;
+        }
+        
+        .aside__menu .aside__menu-link {
+            text-decoration: none;
+            color: white;
+            font-family: Helvetica;
+            font-size: 14px;
+            font-weight: bolder;
+        }
+        
+        .aside__menu .aside__menu-btn:hover .aside__menu-link {
+            text-decoration: none;
+            color: orange;
+            font-family: Helvetica;
+            font-size: 14px;
+            font-weight: bolder;
+        }
+        /* 
+        =========================================
+        =========================================
+        =========================================
+        Navbar
+        =========================================
+        =========================================
+        ========================================= 
+        */
+        
+        .navbar {
+            height: 50px;
+            background-color: rgb(100, 31, 180);
+            z-index: 8888;
+        }
+        
+        .navbar__container {
+            padding: 5px;
+        }
+        /* menu toggle buttn */
+        
+        .navbar__hamburger-btn {
+            border: 1px solid white;
+            width: 30px;
+            height: 30px;
+            padding: 4px;
+            border-radius: 5px;
+        }
+        
+        .navbar__hamburger-btn:hover {
+            background: white;
+        }
+        
+        .navbar__hamburger-btn:hover .navbar__hamburger-lines,
+        .navbar__hamburger-btn:hover .navbar__hamburger-lines:before,
+        .navbar__hamburger-btn:hover .navbar__hamburger-lines::after {
+            border-top: 2px solid orange;
+        }
+        
+        .navbar__hamburger-lines {
+            border-top: 2px solid white;
+            height: 1px;
+            margin-top: 8px;
+            display: block;
+        }
+        
+        .navbar__hamburger-lines::before,
+        .navbar__hamburger-lines::after {
+            content: "";
+            border-top: 2px solid white;
+            margin-top: 4px;
+            display: block;
+        }
+        
+        .navbar__hamburger-btn.active .navbar__hamburger-lines {
+            transform: translateY(6px) scaleX(0.9)
+        }
+        
+        .navbar__hamburger-btn.active .navbar__hamburger-lines::before {
+            transform: rotate(135deg) translate(-2.9px, 14.3px) scaleX(0.6)
+        }
+        
+        .navbar__hamburger-btn.active .navbar__hamburger-lines::after {
+            transform: rotate(45deg) translate(-9px, 1.7px) scaleX(0.6)
+        }
+        /* 
+        =========================================
+        =========================================
+        =========================================
+        main
+        =========================================
+        =========================================
+        ========================================= 
+        */
+        
+        .main {
+            margin-left: 220px;
+            background-color: rgb(255, 226, 191);
+            height: 100%;
+            transition: 1.8s;
+        }
+        
+        .main--expanded {
+            margin-left: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <aside id="aside" class="aside minimize">
+        <ul class="aside__menu">
+            <li class="aside__menu-btn">
+                <a href="" class="aside__menu-link">Customers</a>
+            </li>
+            <li class="aside__menu-btn">
+                <a href="" class="aside__menu-link">Products</a>
+            </li>
+            <li class="aside__menu-btn">
+                <a href="" class="aside__menu-link">Reports</a>
+            </li>
+        </ul>
+
+    </aside>
+    <main id="main" class="main main--expanded">
+        <nav class="navbar">
+            <div class="navbar__container">
+                <div id="navbar__hamburger-btn" class="navbar__hamburger-btn">
+                    <span class="navbar__hamburger-lines"></span>
+                </div>
+            </div>
+        </nav>
+
+    </main>
+    <script>
+        //aside menu toggle
+        var hamburgerBtn = document.getElementById('navbar__hamburger-btn');
+        var aside = document.getElementById('aside');
+        var main = document.getElementById('main');
+        hamburgerBtn.addEventListener('click', function() {
+            //add active to btn
+            if (this.classList.contains('active')) {
+                this.classList.remove('active');
+                //hide side menu
+                aside.classList.add('minimize');
+                // move main to the left 220px
+                main.classList.add('main--expanded');
+            } else {
+                this.classList.add('active');
+                // show side menu
+                aside.classList.remove('minimize');
+                // move main to right 220 px
+                main.classList.remove('main--expanded');
+            }
+        });
+    </script>
+</body>
+
+</html>
